@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ivana Grubišić – Digital Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+  --ink: #111111;
+  --off-white: #f7f5f0;
+  --warm-white: #fdfcfa;
+  --accent: #1b3a5c;
+  --accent2: #c0392b;
+  --gold: #b8986a;
+  --muted: #777;
+  --border: #ddd;
+  --card-bg: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: var(--off-white);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--accent);
+  color: #fff;
+  padding: 80px 60px 70px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  border: 60px solid rgba(255,255,255,0.05);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: 30%;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  border: 40px solid rgba(255,255,255,0.04);
+}
+
+.hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 7vw, 72px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-sub {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 32px;
+}
+
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 28px;
+}
+
+.hero-bio {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.82);
+  max-width: 600px;
+  line-height: 1.75;
+  margin-bottom: 36px;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-tag {
+  border: 1px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.8);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 2px;
+}
+
+/* ── NAV ── */
+.nav-bar {
+  background: var(--warm-white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+}
+
+.nav-inner a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 18px 24px;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-inner a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--gold);
+}
+
+/* ── SECTIONS ── */
+.section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 72px 24px;
+}
+
+.section + .section {
+  border-top: 1px solid var(--border);
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 48px;
+  line-height: 1.1;
+}
+
+/* ── MEDIA GRID ── */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.media-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.media-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+
+.media-card-outlet {
+  padding: 14px 18px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.outlet-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent2);
+  flex-shrink: 0;
+}
+
+.media-card-body {
+  padding: 18px 18px 22px;
+}
+
+.media-card-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: 8px;
+}
+
+.media-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.media-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.media-card-meta {
+  padding: 12px 18px;
+  background: var(--off-white);
+  font-size: 11px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ── DATA VIZ GRID ── */
+.dataviz-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.dataviz-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.dataviz-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+
+.dataviz-header {
+  background: var(--accent);
+  color: #fff;
+  padding: 14px 18px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.dataviz-preview {
+  padding: 24px 18px;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dataviz-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.dataviz-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Timeline mini viz */
+.mini-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tl-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 11px;
+}
+
+.tl-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.tl-date { color: var(--gold); font-weight: 700; white-space: nowrap; }
+.tl-text { color: var(--muted); }
+
+/* Warning card */
+.warning-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  color: #7a5c00;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+/* Stats card */
+.stat-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.stat-block {
+  flex: 1;
+  background: var(--off-white);
+  padding: 10px 12px;
+  border-radius: 3px;
+  border-left: 3px solid var(--gold);
+}
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ── PUBLICATIONS GRID ── */
+.pub-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.pub-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s, box-shadow 0.25s;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.pub-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+
+.pub-card-top {
+  background: var(--accent);
+  padding: 28px 28px 24px;
+  color: #fff;
+  flex: 1;
+}
+
+.pub-card-top .org {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.pub-card-top h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+.pub-card-top p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.65;
+}
+
+.pub-card-bottom {
+  padding: 16px 28px;
+  background: var(--off-white);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.pub-type-tag {
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 2px;
+}
+
+/* ── NEWSLETTERS ── */
+.newsletter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 0;
+}
+
+.newsletter-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.newsletter-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+
+.newsletter-card-header {
+  padding: 16px 20px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.newsletter-logo {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.newsletter-date {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.newsletter-card-body {
+  padding: 18px 20px 22px;
+}
+
+.newsletter-card-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.newsletter-card-body p {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.newsletter-card-footer {
+  padding: 10px 20px;
+  background: var(--off-white);
+  border-top: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* ── DIGITAL CAMPAIGNS ── */
+.campaign-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  gap: 0;
+}
+.campaign-visual {
+  width: 220px;
+  min-height: 260px;
+  background: linear-gradient(135deg, #1b3a5c 0%, #0d2338 60%, #2d6a4f 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  flex-shrink: 0;
+}
+.campaign-icon { font-size: 48px; margin-bottom: 16px; }
+.campaign-site-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 8px; }
+.campaign-site-url { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #fff; text-align: center; line-height: 1.3; }
+.campaign-body { padding: 32px 36px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.campaign-partners { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.partner-tag { background: #e8eef4; color: var(--accent); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; }
+.campaign-link { display: inline-block; margin-top: 20px; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 9px 20px; border-radius: 2px; text-decoration: none; transition: background 0.2s; align-self: flex-start; }
+.campaign-link:hover { background: #0d2338; }
+.campaign-stats { display: flex; gap: 28px; margin-top: 18px; }
+.cstat { text-align: center; }
+.cstat-num { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: var(--accent); }
+.cstat-label { font-size: 11px; color: var(--muted); letter-spacing: 0.5px; margin-top: 2px; }
+@media (max-width: 720px) { .campaign-card { flex-direction: column; } .campaign-visual { width: 100%; min-height: 160px; } }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  padding: 48px 24px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.footer strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.footer a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-inner > * {
+  animation: fadeUp 0.6s ease both;
+}
+.hero-label { animation-delay: 0.05s; }
+.hero h1    { animation-delay: 0.15s; }
+.hero-sub   { animation-delay: 0.25s; }
+.hero-divider { animation-delay: 0.3s; }
+.hero-bio   { animation-delay: 0.35s; }
+.hero-tags  { animation-delay: 0.45s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 720px) {
+  .hero { padding: 52px 24px; }
+  .media-grid, .dataviz-grid, .newsletter-grid { grid-template-columns: 1fr; }
+  .pub-grid { grid-template-columns: 1fr; }
+  .nav-inner a { padding: 14px 12px; font-size: 10px; letter-spacing: 1px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Digital Portfolio</div>
+    <h1>Ivana <em>Grubišić</em></h1>
+    <div class="hero-sub">Strategic Communications Specialist</div>
+    <div class="hero-divider"></div>
+    <p class="hero-bio">Seven years of driving international advocacy campaigns, earned media, and multi-channel storytelling for mission-driven organisations across Europe. Turning complex policy issues into narratives that move people — and governments.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">Media Relations</span>
+      <span class="hero-tag">Advocacy Campaigns</span>
+      <span class="hero-tag">Data Storytelling</span>
+      <span class="hero-tag">Brand Strategy</span>
+      <span class="hero-tag">Publications</span>
+      <span class="hero-tag">Newsletters</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a href="#campaigns">Digital Campaigns</a>
+    <a href="#media">Media</a>
+    <a href="#dataviz">Data Visualisation</a>
+    <a href="#publications">Publications</a>
+    <a href="#newsletters">Newsletters</a>
+  </div>
+</nav>
+
+<!-- DIGITAL CAMPAIGNS -->
+<section class="section" id="campaigns">
+  <div class="section-label">Campaign Work</div>
+  <h2 class="section-title">Digital Campaigns</h2>
+
+  <div class="campaign-card">
+    <div class="campaign-visual">
+      <div class="campaign-icon">🌱</div>
+      <div class="campaign-site-label">Live Campaign</div>
+      <div class="campaign-site-url">greatforealife.org</div>
+    </div>
+    <div class="campaign-body">
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Fossil Fuels · Renewable Energy · Public Awareness</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;line-height:1.3;color:var(--ink);margin-bottom:14px;">Great for Real Life</h3>
+        <p style="color:var(--muted);font-size:14px;line-height:1.7;">
+          A multi-country digital campaign exploring how fossil fuels have shaped our everyday lives — and making the case for a cleaner, more sustainable future. The campaign tells the story of our dependence on fossil energy through personal and societal lenses, and invites audiences across Europe to imagine and act towards a non-polluting world built on renewables.
+        </p>
+        <div class="campaign-stats">
+          <div class="cstat"><div class="cstat-num">5</div><div class="cstat-label">Countries</div></div>
+          <div class="cstat"><div class="cstat-num">2.5M</div><div class="cstat-label">Audience Reached</div></div>
+          <div class="cstat"><div class="cstat-num">€50K</div><div class="cstat-label">Grant Secured</div></div>
+        </div>
+        <div class="campaign-partners">
+          <span class="partner-tag">European Climate Foundation</span>
+          <span class="partner-tag">CEE Bankwatch Network</span>
+          <span class="partner-tag">Fundación Renovables</span>
+        </div>
+        <a class="campaign-link" href="https://greatforealife.org/" target="_blank">Visit Campaign ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA PLACEMENTS -->
+<section class="section" id="media">
+  <div class="section-label">Earned Media</div>
+  <h2 class="section-title">Pitching Stories to the Media</h2>
+
+  <div class="media-grid">
+
+    <a class="media-card" href="https://www.theguardian.com/environment/2023/sep/13/eu-states-must-bridge-planning-gap-in-order-to-hit-climate-targets-report-warns" target="_blank" rel="noopener">
+      <div class="media-card-outlet">
+        <span class="outlet-dot"></span>
+        The Guardian
+      </div>
+      <div class="media-card-body">
+        <div class="media-card-tag">Climate Policy</div>
+        <h3>EU states must bridge 'planning gap' in order to hit climate targets, report warns</h3>
+        <p>European countries must bridge the vast "planning gap" between their climate targets and action plans, according to a new report.</p>
+      </div>
+      <div class="media-card-meta">
+        <span>By Ajit Niranjan</span>
+        <span>theguardian.com</span>
+      </div>
+    </a>
+
+    <a class="media-card" href="https://www.euractiv.com/news/eu-significantly-off-track-from-2030-climate-goal-commission-warns/" target="_blank" rel="noopener">
+      <div class="media-card-outlet">
+        <span class="outlet-dot"></span>
+        Euractiv
+      </div>
+      <div class="media-card-body">
+        <div class="media-card-tag">Energy &amp; Environment</div>
+        <h3>EU significantly off-track from 2030 climate goal, Commission warns</h3>
+        <p>The European Commission has issued a stark warning that the EU is falling significantly short of its 2030 climate commitments.</p>
+      </div>
+      <div class="media-card-meta">
+        <span>By Nikolaus J. Kurmayer</span>
+        <span>Dec 2023 · Euractiv.com</span>
+      </div>
+    </a>
+
+    <a class="media-card" href="https://euobserver.com/51274/eus-e723bn-covid-recovery-fund-saw-growth-but-doubts-remain/" target="_blank" rel="noopener">
+      <div class="media-card-outlet">
+        <span class="outlet-dot"></span>
+        EU Observer
+      </div>
+      <div class="media-card-body">
+        <div class="media-card-tag">Green Economy</div>
+        <h3>EU's €723bn Covid recovery fund saw growth, but doubts remain</h3>
+        <p>Analysis of the EU's landmark recovery facility reveals growth in uptake, alongside persistent concerns about transparency and delivery.</p>
+      </div>
+      <div class="media-card-meta">
+        <span>News</span>
+        <span>euobserver.com</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- DATA VISUALISATION -->
+<section class="section" id="dataviz">
+  <div class="section-label">Visual Journalism</div>
+  <h2 class="section-title">Data Visualisation</h2>
+
+  <div class="dataviz-grid">
+
+    <!-- Timeline card -->
+    <div class="dataviz-card">
+      <div class="dataviz-header">REPowerEU Timeline</div>
+      <div class="dataviz-preview">
+        <div class="mini-timeline">
+          <div class="tl-item">
+            <span class="tl-dot"></span>
+            <span class="tl-date">May 2022</span>
+            <span class="tl-text">Commission launches REPowerEU plan</span>
+          </div>
+          <div class="tl-item">
+            <span class="tl-dot"></span>
+            <span class="tl-date">Dec 2022</span>
+            <span class="tl-text">Parliament &amp; Council reach agreement</span>
+          </div>
+          <div class="tl-item">
+            <span class="tl-dot"></span>
+            <span class="tl-date">Feb 2023</span>
+            <span class="tl-text">Commission publishes guidance</span>
+          </div>
+          <div class="tl-item">
+            <span class="tl-dot"></span>
+            <span class="tl-date">Mar 2023</span>
+            <span class="tl-text">Amended legislation enters into force</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Warning card -->
+    <div class="dataviz-card">
+      <div class="dataviz-header">Campaign Infographic</div>
+      <div class="dataviz-preview">
+        <div class="warning-badge">⚠ Critical Issue</div>
+        <h3>Repowering Gas Projects in Czech Republic</h3>
+        <p style="font-size:12px; color:var(--muted); margin-top:6px;">New gas pipelines would take years to build, failing to address short-term energy security while locking in fossil fuel dependency.</p>
+      </div>
+    </div>
+
+    <!-- Stats card -->
+    <div class="dataviz-card">
+      <div class="dataviz-header">REPowerEU Funding Overview</div>
+      <div class="dataviz-preview">
+        <h3 style="margin-bottom:12px;">Around €250bn available to Member States</h3>
+        <div class="stat-row">
+          <div class="stat-block">
+            <div class="stat-num">€20bn</div>
+            <div class="stat-label">New EU grants</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-num">€117bn</div>
+            <div class="stat-label">Unused loans</div>
+          </div>
+        </div>
+        <div style="font-size:11px; color:var(--muted); margin-top:10px;">Source: CEE Bankwatch Network · bankwatch.org</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="section" id="publications">
+  <div class="section-label">Written Work</div>
+  <h2 class="section-title">Publications</h2>
+
+  <div class="pub-grid">
+
+    <a class="pub-card" href="https://bankwatch.org/publication/repowereu-a-new-opportunity-to-finance-energy-transformation-repowereu-chapters-factsheet" target="_blank" rel="noopener">
+      <div class="pub-card-top">
+        <div class="org">CEE Bankwatch Network · March 2023</div>
+        <h3>REPowerEU – A New Opportunity to Finance Energy Transformation</h3>
+        <p>This factsheet explores how the REPowerEU strategy can help the EU move away from fossil fuels, outlining the actions Member States should take to include dedicated REPowerEU chapters in their recovery and resilience plans — and the risks of not doing so.</p>
+      </div>
+      <div class="pub-card-bottom">
+        <span class="pub-type-tag">Factsheet</span>
+        <span>REPowerEU Chapters</span>
+      </div>
+    </a>
+
+    <a class="pub-card" href="https://danube-sturgeons.org/wp-content/uploads/2020/10/Brochure-Legal-Framework-for-Sturgeon-Protection-1.pdf" target="_blank" rel="noopener">
+      <div class="pub-card-top">
+        <div class="org">WWF · 2020</div>
+        <h3>Fighting Wildlife Crime: Danube Sturgeons – European and International Legal Framework for Sturgeons Protection</h3>
+        <p>A comprehensive overview of the legal protections available to critically endangered Danube sturgeon species, examining gaps in both European and international frameworks and the role of civil society in enforcement.</p>
+      </div>
+      <div class="pub-card-bottom">
+        <span class="pub-type-tag">Research Report</span>
+        <span>Wildlife &amp; Conservation</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- NEWSLETTERS -->
+<section class="section" id="newsletters">
+  <div class="section-label">Audience Engagement</div>
+  <h2 class="section-title">Newsletters</h2>
+
+  <div class="newsletter-grid">
+
+    <div class="newsletter-card">
+      <div class="newsletter-card-header">
+        <span class="newsletter-logo">CEE Bankwatch Network</span>
+        <span class="newsletter-date">Late 2022</span>
+      </div>
+      <div class="newsletter-card-body">
+        <h3>Time for Energy Transformation: Stepping Up to the Challenge</h3>
+        <p>A briefing to Members of the European Parliament summarising key advances in climate and energy legislation since the previous edition, and identifying upcoming decision points for policymakers.</p>
+      </div>
+      <div class="newsletter-card-footer">Audience: MEPs &amp; EU Institutions</div>
+    </div>
+
+    <div class="newsletter-card">
+      <div class="newsletter-card-header">
+        <span class="newsletter-logo">Policy Brief</span>
+        <span class="newsletter-date">2022–2023</span>
+      </div>
+      <div class="newsletter-card-body">
+        <h3>Energy Communities: Public Financing Opportunities in Europe</h3>
+        <p>This briefing analyses the extent to which cohesion policy programmes and national recovery plans support energy communities across 12 EU countries, with recommendations on REPowerEU chapter opportunities.</p>
+      </div>
+      <div class="newsletter-card-footer">12 EU Countries Covered</div>
+    </div>
+
+    <div class="newsletter-card">
+      <div class="newsletter-card-header">
+        <span class="newsletter-logo">Just Transition Brief</span>
+        <span class="newsletter-date">2022</span>
+      </div>
+      <div class="newsletter-card-body">
+        <h3>The Second and Third Pillars of the Just Transition Mechanism</h3>
+        <p>An in-depth analysis of two under-examined pillars of the Just Transition Mechanism, identifying strengths, weaknesses, and issues around transparency and stakeholder consultation.</p>
+      </div>
+      <div class="newsletter-card-footer">EU Green Deal · Policy Analysis</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>Ivana Grubišić</strong>
+  Strategic Communications Specialist · Berlin, Germany<br><br>
+  <a href="mailto:ivanagrubisic@hotmail.com">ivanagrubisic@hotmail.com</a>
+  &nbsp;·&nbsp;
+  <a href="https://www.linkedin.com/in/ivana-grubišić/" target="_blank">LinkedIn</a>
+</div>
+
+</body>
+</html>
